@@ -9,13 +9,13 @@ public:
         for(r ; r<n ; r++){
           mpp[arr[r]]++;
           if(mpp.size() > k){
-            while(mpp.size() > k){
+          
               mpp[arr[l]]-- ;
               if(mpp[arr[l]] == 0){
                 mpp.erase(arr[l]);
               }
               l++ ;
-            }
+            
           }
         if(mpp.size() <= k){
           maxlen = max(maxlen , r-l+1);
