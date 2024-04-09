@@ -6,7 +6,7 @@ public:
         int r = 0 , maxlen = 0 ;
         int n = arr.size();
         unordered_map<int, int> mpp;
-        while(r<n){
+        for(r ; r<n ; r++){
           mpp[arr[r]]++;
           if(mpp.size() > k){
             while(mpp.size() > k){
@@ -20,7 +20,6 @@ public:
         if(mpp.size() <= k){
           maxlen = max(maxlen , r-l+1);
         }
-        r++ ;
         }
       return maxlen ;
     }
