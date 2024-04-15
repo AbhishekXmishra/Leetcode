@@ -12,13 +12,41 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(root == NULL){
-          return 0;
-        }
 
-        int rightheight = maxDepth(root -> left);
-        int leftheight = maxDepth(root -> right);
+// IMP Galti
+if(root==NULL)
+	return 0;
 
-        return max(rightheight , leftheight) + 1;
+queue<TreeNode*> q;
+q.push(root);
+q.push(NULL);
+int count = 1;
+
+//asli traversal start krete h 
+
+while(!q.empty()) {
+	TreeNode* front = q.front();
+	q.pop();
+
+	if(front == NULL) {
+		cout << endl;
+		if(!q.empty()) {
+			count++;
+			q.push(NULL);
+		}
+	}
+	else {
+		//valid node wala case
+		//cout << front->data << " ";
+
+		if(front->left != NULL) {
+			q.push(front->left);
+		}
+		if(front->right != NULL) {
+			q.push(front->right);
+		}
+	}
+}
+return count;
     }
 };
