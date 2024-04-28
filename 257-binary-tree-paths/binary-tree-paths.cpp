@@ -1,22 +1,19 @@
 class Solution {
 public:
-    vector<string> binaryTreePaths(TreeNode* root) {
-        vector<string> result;
-        insertPaths(root, "", &result);
-        return result;
-    }
-private:
-	// simple recursive pre-order traversal
-    void insertPaths(TreeNode* node, string str, vector<string>* res) {
-        if (!node) return;  // base-case
-        
-        str += to_string(node->val);
-        if (!node->left && !node->right) {
-			// if the current node is a leaf, add string to result
-            res->emplace_back(str);
+    void helper(TreeNode* root,vector<string>& answer,string curr){
+        if(!root)return;
+        if(root->left||root->right)curr+=(to_string(root->val)+"->");
+        else{
+            curr+=(to_string(root->val));
+            answer.push_back(curr);
         }
-        
-        insertPaths(node->left, str + "->", res);
-        insertPaths(node->right, str + "->", res);
+        helper(root->left,answer,curr);
+        helper(root->right,answer,curr);  
+    }
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> answer;
+        string curr="";
+        helper(root,answer,curr);
+        return answer;
     }
 };
