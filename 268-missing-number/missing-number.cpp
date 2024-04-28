@@ -1,18 +1,15 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        sort(nums.begin() , nums.end());
         int n = nums.size();
-        //case 1
-        if(nums[0] != 0)return 0;
-        //case 2 
-        if(nums[n-1] != n)return n;
-        for(int i =1;i<nums.size();i++){
-            if(nums[i] != i){
-            //case 3
-            return i;
-            }
+        vector<int>v(n+1,-1);
+        for(int i =0;i<nums.size();i++){
+            v[nums[i]] = nums[i];
+        }
+        for(int i =0;i<v.size();i++){
+            if(v[i]==-1)return i;
         }
         return 0;
     }
 };
+
