@@ -10,52 +10,40 @@
  */
 class Solution {
 private:
-    ListNode* reverseList(ListNode* node) {
-        ListNode *previous = nullptr, *current = node, *nextNode;
-
-        while (current != nullptr) {
-
-            nextNode = current->next;
-
-            current->next = previous;
-
-            previous = current;
-            current = nextNode;
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* cur = head;
+        ListNode* temp = NULL;
+        while(cur) {
+            temp = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = temp;
         }
-
-        return previous;
+        return prev;
     }
-
 public:
     ListNode* doubleIt(ListNode* head) {
-        ListNode* reversedList = reverseList(head);
-
+        if(!head) return NULL;
+        ListNode* head2 = reverse(head);
+        ListNode* dummy = new ListNode(0);
+        ListNode* temp = dummy;
         int carry = 0;
-        ListNode *current = reversedList, *previous = nullptr;
-
-        while (current != nullptr) {
-
-            int newValue = current->val * 2 + carry;
-
-            current->val = newValue % 10;
-
-            if (newValue > 9) {
-                carry = 1;
-            } else {
-                carry = 0;
+        while(head2 != NULL || carry) {
+            int sum = 0;
+            if(head2) {
+                sum += (head2->val * 2);
+                head2 = head2->next;
             }
-
-            previous = current;
-            current = current->next;
+            
+            sum += carry;
+            
+            carry = sum / 10;
+            ListNode* curr = new ListNode(sum % 10);
+            temp->next = curr;
+            temp = temp->next;
         }
-
-        if (carry != 0) {
-            ListNode* extraNode = new ListNode(carry);
-            previous->next = extraNode;
-        }
-
-        ListNode* result = reverseList(reversedList);
-
-        return result;
+        
+        return reverse(dummy->next);
     }
 };
