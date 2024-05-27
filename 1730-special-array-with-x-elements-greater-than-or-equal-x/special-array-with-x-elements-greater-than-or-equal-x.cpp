@@ -2,17 +2,22 @@ class Solution {
 public:
     int specialArray(vector<int>& nums) {
         int n = nums.size();
-        sort(nums.begin() , nums.end());
-        for(int x = 0 ; x <= n ; x++){
-          int idx = lower_bound(nums.begin() , nums.end() , x) - nums.begin();
+        vector<int> freq(n+1);
 
-          int count = n - idx;
-
-          if(count == x){
-            return x ;
-          }
+        for(int i = 0 ;  i< n ; i++){
+          int num = nums[i];
+          freq[min(n , num)]++ ;
         }
+    int sum = 0 ;
+    for(int x = n ; x>= 0 ; x-- ){
+        sum += freq[x];
 
-        return -1 ;
+        if(x == sum){
+          return x ;
+        } 
+
     }
+
+    return -1 ;
+    } 
 };
