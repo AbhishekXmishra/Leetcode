@@ -2,6 +2,9 @@ class Solution {
 public:
     int minStoneSum(vector<int>& piles, int k) {
         priority_queue<int> pq ;
+        std::ios_base::sync_with_stdio(false);
+        std::cin.tie(NULL);
+        std::cout.tie(NULL);
         for(int i = 0; i < piles.size() ; i++){
           pq.push(piles[i]);
         }
