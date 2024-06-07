@@ -8,11 +8,10 @@ if(index >= nums.size()){
     
     }
     // include 
+    
+    solve( nums , output , index+1 , ans);
     int element = nums[index] ;
     output.push_back(element);
-    solve( nums , output , index+1 , ans);
-    output.pop_back(); // no taking ith element
-    // explore karo
     solve( nums , output , index+1 , ans) ;
 
 
