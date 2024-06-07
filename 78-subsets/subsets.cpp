@@ -7,17 +7,12 @@ if(index >= nums.size()){
     return ; 
     
     }
-
-    // exclude 
-
-   
-
     // include 
-
     int element = nums[index] ;
     output.push_back(element);
     solve( nums , output , index+1 , ans);
-    output.pop_back();
+    output.pop_back(); // no taking ith element
+    // explore karo
     solve( nums , output , index+1 , ans) ;
 
 
