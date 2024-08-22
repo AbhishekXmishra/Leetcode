@@ -2,7 +2,7 @@ class Solution {
     void solve(int ind , vector<int> op , vector<vector<int>>& ans , vector<int>& nums){
          ans.push_back(op);
         for(int i = ind ; i < nums.size() ; i++){
-        if(i != ind && nums[i] == nums[i-1]) continue ;
+        if(i > ind && nums[i] == nums[i-1]) continue ;
         op.push_back(nums[i]);
         solve(i+ 1 , op , ans , nums);
         op.pop_back();
